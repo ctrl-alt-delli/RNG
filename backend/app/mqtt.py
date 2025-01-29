@@ -38,7 +38,7 @@ class MQTT:
         self.client.message_callback_add("620157584_pub", self.toggle)
 
         # ADD MQTT SERVER AND PORT INFORMATION BELOW
-        self.client.connect_async("test.mosquitto.org", 1883, 60)
+        self.client.connect_async("broker.emqx.io", 1883, 60)
        
 
 

@@ -11,6 +11,12 @@
                             <RouterLink class="route" :to="{ name: 'Home' }" >
                                 <VBtn class="text-subtitle-2"   density="compact"  color="primary" :variant="(route.name == 'Home')? 'tonal':'text'">Home</VBtn>
                             </RouterLink>
+                            <RouterLink class="route" to="/intro">
+                            <VBtn class="text-subtitle-2" density="compact" color="primary" :variant="(route.name == 'Intro')? 'tonal':'text'">Intro</VBtn>
+                            </RouterLink>
+                            <RouterLink class="route" to="/graph">
+                            <VBtn class="text-subtitle-2" density="compact" color="primary" :variant="(route.name == 'Graph')? 'tonal':'text'">Graph</VBtn>
+                            </RouterLink>
 
                             <!-- Add Links Below -->
                                             

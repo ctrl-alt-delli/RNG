@@ -52,12 +52,12 @@
 // MQTT CLIENT CONFIG  
 static const char* pubtopic       = "620157584";                    // Add your ID number here
 static const char* subtopic[]     = {"620157584_sub","/elet2415"};  // Array of Topics(Strings) to subscribe to
-static const char* mqtt_server    = "test.mosquitto.org";                // Broker IP address or Domain name as a String 
+static const char* mqtt_server    = "broker.emqx.io";                // Broker IP address or Domain name as a String 
 static uint16_t mqtt_port         = 1883;
 
 // WIFI CREDENTIALS
-const char* ssid                  = "Digicel_WiFi_eSEb"; // Add your Wi-Fi ssid
-const char* password              = "WYPx3kCk"; // Add your Wi-Fi password 
+const char* ssid                  = "MonaConnect"; // Add your Wi-Fi ssid
+const char* password              = ""; // Add your Wi-Fi password 
 
 
 
@@ -103,18 +103,6 @@ uint8_t number = 0;
 void setup() {
   Serial.begin(115200);  // INIT SERIAL 
   // Connect to Wi-Fi
-  Serial.println("Connecting to Wi-Fi...");
-  WiFi.begin(ssid, password);
-
-    // Wait for connection
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.print(".");
-    }
-
-    Serial.println("\nWi-Fi connected!");
-    Serial.print("IP Address: ");
-    Serial.println(WiFi.localIP()); // Print the IP Address of ESP32 
 
   // CONFIGURE THE ARDUINO PINS OF THE 7SEG AS OUTPUT
   pinMode(a,OUTPUT);
@@ -131,23 +119,14 @@ void setup() {
   pinMode(BTN_A,INPUT_PULLUP);
 
   Display(8);
-  vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
   initialize();           // INIT WIFI, MQTT & NTP 
+  vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
 
 }
   
 
 
-void loop() {
-  if (WiFi.status() == WL_CONNECTED) {
-    Serial.println("ESP32 is connected to Wi-Fi.");
-    } 
-  else {
-    Serial.println("ESP32 is not connected to Wi-Fi.");
-    }
-    delay(5000); // Check every 5 seconds
-    // put your main code here, to run repeatedly: 
-    
+void loop() { 
 }
 
 
@@ -162,6 +141,7 @@ void vButtonCheck( void * pvParameters )  {
       
     for( ;; ) {
     if (digitalRead(BTN_A) == LOW) { 
+      delay(500);
       GDP();  // Generate, Display, and Publish the random number
     }
     }    // Add code here to check if a button(S) is pressed
