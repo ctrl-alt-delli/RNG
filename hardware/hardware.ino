@@ -52,7 +52,7 @@
 // MQTT CLIENT CONFIG  
 static const char* pubtopic       = "620157584";                    // Add your ID number here
 static const char* subtopic[]     = {"620157584_sub","/elet2415"};  // Array of Topics(Strings) to subscribe to
-static const char* mqtt_server    = "http://www.yanacreations.com/";                // Broker IP address or Domain name as a String 
+static const char* mqtt_server    = "test.mosquitto.org";                // Broker IP address or Domain name as a String 
 static uint16_t mqtt_port         = 1883;
 
 // WIFI CREDENTIALS
@@ -258,7 +258,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     */
 
     serializeJson(doc, message);  // Seralize / Covert JSon object to JSon string and store in char* array  
-    publish("topic", message);    // Publish to a topic that only the Frontend subscribes to.
+    publish("620157584", message);    // Publish to a topic that only the Frontend subscribes to.
           
   } 
 
